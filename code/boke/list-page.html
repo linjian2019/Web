@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List page</title>
+    <script src="vue.js"></script>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .button1{
+            position:absolute;
+            left:1617px;
+            top:60px;
+        }
+        #main {
+            width: 1500px;
+            height: 2000px;
+            margin-top:100px;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #b0e0e6
+        }
+
+    </style>
+</head>
+<body>
+<a href="publish-page.html">
+    <input type="button" class="button1" value="我要发布文章" @click="publish">
+</a>
+<section id="main">
+    <header class="header">
+        <h1>列表页面</h1>
+    </header>
+    <section class="main">
+        <ul class="todo-list">
+            <li class="todo" v-for="(item,index) in list">
+                <div class="view">
+                    <span class="index">{{ index+1 }}
+                        <h2>{{ item.name }}</h2>
+                        <p>{{ item.datails }}</p>
+                        <p>作者：{{ item.writer }}</p>
+                        <p>发布时间：{{ item.time }}</p>
+                        <button class="destroy" @click = "remove(index)">删除</button>
+                        <hr>
+                    </span>
+                </div>
+            </li>
+        </ul>
+    </section>
+    <footer class="footer" v-show="list.length!=0">
+        <span class="todo-count" v-if="list.length!=0">
+            <strong>{{ list.length }}</strong>个项目
+        </span>
+        <button v-show="list.length!=0" class="clear-completed" @click="clear">
+            清空
+        </button>
+    </footer>
+</section>
+<script src="index.js"></script>
+</body>
+</html>
